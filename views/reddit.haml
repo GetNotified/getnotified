@@ -1,0 +1,11 @@
+.container.marketing
+  %form{:method=>"post", :action=>"reddit/submit", :id=> "reddit_front_page"}
+    %fieldset
+      %legend Create Front Page Notification
+      %label Notify me when a post has over (upvotes):
+      %select{:name => "score", :id => "score"}
+        %option{:value=>"15000"}15 000
+        %option{:value=>"25000"}25 000
+        %option{:value=>"50000"}50 000
+      %br
+      %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
