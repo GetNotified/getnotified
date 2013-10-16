@@ -6,7 +6,6 @@ require_relative 'models/init'
 class Application < Sinatra::Base
   enable :method_override
   enable :sessions
-  set :bind, '0.0.0.0'
   set :session_secret, 'super secret'
 
   configure do

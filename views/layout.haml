@@ -1,23 +1,28 @@
-%html
+%html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}
-    %title NotifyMe App
-    %meta{:name => "description", :content => ""}
-    %meta{:name => "author", :content => ""}
-    :plain
-      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-      <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
-
-    / Le styles
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    %title Carousel Template for Bootstrap
+    / Bootstrap core CSS
     %link{ :href => "/bootstrap/css/bootstrap.css", :type => "text/css", :rel => "stylesheet" }
-    / add body padding styles
-    %link{ :href => "/css/styles.css", :type => "text/css", :rel => "stylesheet" }
+    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      <script src="/assets/js/html5shiv.js"></script>
+      <script src="/assets/js/respond.min.js"></script>
 
-  %body
+    %body
+      %div= haml :navbar
 
-    %div= yield
+      %div= yield
 
-    / Placed at the end of the document so the pages load faster
+      .container.marketing
+        %div= haml :footer
+
+    / Custom styles for this template
+    %link{:href => "/css/carousel.css", :rel => "stylesheet"}
+    / Scripts
+    %script{ :type => "text/javascript", :src =>"/assets/js/jquery.js"}
     %script{ :type => "text/javascript", :src =>"/bootstrap/js/bootstrap.min.js"}
+    %script{ :type => "text/javascript", :src =>"/assets/js/holder.js"}
