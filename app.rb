@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require 'json/ext'
+require 'mongo'
 require_relative 'routes/init'
 require_relative 'helpers/init'
 require_relative 'models/init'
@@ -10,6 +12,9 @@ class Application < Sinatra::Base
 
   configure do
     set :app_file, __FILE__
+    conn = MongoClient.new("localhost", 27017)
+    set :mongo_connection, conn
+    set :mongo_db, conn.db('NotifyMe')
   end
 
   configure :development do
