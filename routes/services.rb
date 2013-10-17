@@ -7,7 +7,7 @@ class Application < Sinatra::Base
     raise InvalidParameters, "Missing score parameter" unless score
 
     user = 'Chris'
-    type = 'reddit_front_page'
+    type = 'reddit-front-page'
     request = 'http://www.reddit.com/.json'
 
     requests_coll = settings.mongo_db.collection("requests")
@@ -30,7 +30,8 @@ class Application < Sinatra::Base
           score: score,
       },
       {upsert: true})
-    "Success"
+    # Executed successfully
+    {success: 'true'}.to_json
   end
 
 end

@@ -1,5 +1,5 @@
 .container.marketing
-  %form{:method=>"post", :action=>"reddit/submit", :id=> "reddit_front_page"}
+  %form#reddit-front-page{:method=>"POST", :action=>"reddit/submit"}
     %fieldset
       %legend Create Front Page Notification
       %label Notify me when a post has over (upvotes):
@@ -9,23 +9,6 @@
         %option{:value=>"50000"}50 000
       %br
       %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
-
--#
-  :javascript
-    $(function() {
-      $("#reddit_front_page").submit(function(e){
-        e.preventDefault();
-
-        $.ajax({
-          type: "POST",
-          url: "/reddit/submit",
-          data: $('form.reddit_front_page').serialize(),
-          success: function(){
-            $("#alert alert-success").html("Successfully added notification")
-          },
-          error: function(){
-            $("#alert alert-danger").html("Error adding notification")
-          }
-        });
-      });
-    });
+      .alert.alert-success.alert-dismissable.fade#formAlert{:style=>"margin-top:10px"}
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+        Success!
