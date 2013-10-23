@@ -1,4 +1,5 @@
 var form = $("#reddit-front-page");
+var form_alert = $("#formAlert");
 var form_url = $(form).attr("action");
 
 $(form).submit(function( event ) {
@@ -10,9 +11,13 @@ $(form).submit(function( event ) {
         data: form_data
     })
     .done(function () {
-        $("#formAlert").addClass("in");
+        $(form_alert).append("Notification saved!");
+        $(form_alert).addClass("alert-success");
+        $(form_alert).addClass("in");
     })
-    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-
+    .fail(function () {
+        $(form_alert).append("Error saving notification!");
+        $(form_alert).addClass("alert-danger");
+        $(form_alert).addClass("in");
     });
 });
