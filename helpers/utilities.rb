@@ -1,5 +1,5 @@
 class Application < Sinatra::Base
-
+  include HTTParty
   helpers do
     # HTTParty get wrapper. This serves to clean up code, as well as throw webserver errors wherever needed
     #

@@ -34,7 +34,7 @@ class Application < Sinatra::Base
         :body => "You have successfully registered your device with NotifyMe!"
     }.to_json
     post('https://notifyme-push.azure-mobile.net/api/android',
-                  body: { regId: regId, message: message },
+                  query: { regId: regId, message: message },
                   headers: { "X-ZUMO-APPLICATION" => "dqqVxPzryhdPowsPQMFzIWyBUslIlZ46" }
     )
     # Executed successfully
