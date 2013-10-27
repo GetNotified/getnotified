@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'json/ext'
 require 'mongo'
+require 'httparty'
 require_relative 'routes/init'
 require_relative 'helpers/init'
 require_relative 'models/init'
