@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'mongo'
 gem 'bson_ext'
 gem 'haml'
@@ -8,3 +9,5 @@ gem 'shotgun'
 gem 'thin'
 gem 'json'
 gem 'httparty'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'

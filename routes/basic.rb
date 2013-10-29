@@ -1,4 +1,7 @@
 class Application < Sinatra::Base
+  register Sinatra::ConfigFile
+
+  config_file 'config/config.yml'
 
   get '/' do
     haml :index
