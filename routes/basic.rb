@@ -1,7 +1,4 @@
 class Application < Sinatra::Base
-  register Sinatra::ConfigFile
-
-  config_file 'config/config.yml'
 
   get '/' do
     haml :index
@@ -9,5 +6,10 @@ class Application < Sinatra::Base
 
   get '/services/:service' do |serv|
     haml :reddit
+  end
+
+  get '/admin' do
+    authenticate
+    "Admin Only!"
   end
 end

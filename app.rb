@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'sinatra/config_file'
 
 require 'json/ext'
 require 'mongo'
@@ -13,29 +12,29 @@ require_relative 'helpers/init'
 require_relative 'models/init'
 
 class Application < Sinatra::Base
-  register Sinatra::ConfigFile
 
   configure do
     set :app_file, __FILE__
+
+    CONFIG = YAML.load(File.open('config/config.yml'))
+
     conn = MongoClient.new("localhost", 27017)
     set :mongo_connection, conn
     set :mongo_db, conn.db('NotifyMe')
 
-    config_file 'config/config.yml'
+    use Rack::Session::Cookie, :secret => CONFIG['RACK_COOKIE_SECRET']
 
-    use Rack::Session::Cookie, :secret => settings.RACK_COOKIE_SECRET
-
-    #use OmniAuth::Builder do
-    #  # For additional provider examples please look at 'omni_auth.rb'
-    #  provider :google_oauth2, settings.GOOGLE_KEY, settings.GOOGLE_SECRET,
-    #           {
-    #               :name => "google",
-    #               :scope => "userinfo.email, userinfo.profile",
-    #               :prompt => "none",
-    #               :image_aspect_ratio => "original",
-    #               :image_size => 50
-    #           }
-    #end
+    use OmniAuth::Builder do
+      provider :google_oauth2, CONFIG['GOOGLE_KEY'], CONFIG['GOOGLE_SECRET'],
+               {
+                     :name => "google",
+                     :scope => "userinfo.email,userinfo.profile",
+               }
+    end
+    # This is used to redirect to failure even in dev mode
+    OmniAuth.config.on_failure = Proc.new { |env|
+      OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+    }
   end
 
   configure :development do
