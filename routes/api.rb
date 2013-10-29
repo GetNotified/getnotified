@@ -4,7 +4,7 @@ class Application < Sinatra::Base
     "NotifyMe API v1"
   end
 
-  post '/api/register' do
+  post '/api/device/register' do
     content_type :json
 
     regId = params[:regId]
@@ -29,14 +29,8 @@ class Application < Sinatra::Base
        },
        {upsert: true})
 
-    message = {
-        :usermame => username,
-        :body => "You have successfully registered your device with NotifyMe!"
-    }.to_json
-    post('https://notifyme-push.azure-mobile.net/api/android',
-                  query: { regId: regId, message: message },
-                  headers: { "X-ZUMO-APPLICATION" => "dqqVxPzryhdPowsPQMFzIWyBUslIlZ46" }
-    )
+    send_register_confirm(regId)
+
     # Executed successfully
     {success: 'true'}.to_json
   end

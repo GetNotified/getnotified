@@ -34,6 +34,9 @@
                 %li
                   %a{:href => "#"} One more separated link
           %ul.nav.navbar-nav.navbar-right
-            %li
+            - if logged_in?
+              %li
+                %a{:href => "#"} #{session[:fullname]}
+            - else
               %a{:href => "/auth/google"}
-                -# %img{:src => "/assets/img/google-sign-in.png"}
+                %img{:src => "/assets/img/google-sign-in.png"}
