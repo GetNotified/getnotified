@@ -8,12 +8,12 @@ class Application < Sinatra::Base
     content_type :json
 
     regId = params[:regId]
-    username  = params[:username]
+    uid  = params[:uid]
     device_type = params[:device_type]
     users_coll = settings.mongo_db.collection("users")
-    user = users_coll.find_one({:username => username})
+    user = users_coll.find_one({:uid => uid})
 
-    unless regId and username and device_type
+    unless regId and uid and device_type
       return {success: 'false',
               error: 'Missing parameters'}.to_json
     end
@@ -23,7 +23,7 @@ class Application < Sinatra::Base
               error: 'User not found'}.to_json
     end
 
-    users_coll.update( {username: username},
+    users_coll.update( {uid: uid},
        {
            "$push" => { :devices => { :regId => regId, :type => device_type } }
        },
