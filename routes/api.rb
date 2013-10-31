@@ -23,9 +23,11 @@ class Application < Sinatra::Base
               error: 'User not found'}.to_json
     end
 
-    unless user['devices'].select { |device| device['regId'] == regId  }.empty?
-      return {success: 'false',
-              error: 'Device already registered'}.to_json
+    unless user['devices'].nil?
+      unless user['devices'].select { |device| device['regId'] == regId }.empty?
+        return {success: 'false',
+                error:   'Device already registered'}.to_json
+      end
     end
 
     users_coll.update( {uid: uid},
