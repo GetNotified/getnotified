@@ -11,13 +11,19 @@ $(form).submit(function( event ) {
         data: form_data
     })
     .done(function () {
-        $(form_alert).append("Notification saved!");
+        $(form_alert).text("Notification saved!");
         $(form_alert).addClass("alert-success");
         $(form_alert).addClass("in");
     })
-    .fail(function () {
-        $(form_alert).append("Error saving notification!");
+    .fail(function (request, status, error) {
+        $(form_alert).text("Error saving notification!");
         $(form_alert).addClass("alert-danger");
         $(form_alert).addClass("in");
     });
+});
+
+$("#reddit-front-page-alert").click(function () {
+    $(form_alert).text("You need to sign in first!");
+    $(form_alert).addClass("alert-danger");
+    $(form_alert).addClass("in");
 });

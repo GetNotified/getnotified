@@ -1,10 +1,10 @@
 class Application < Sinatra::Base
 
-  get '/api' do
+  get '/api/?' do
     "NotifyMe API v1"
   end
 
-  post '/api/device/register' do
+  post '/api/device/register/?' do
     content_type :json
 
     regId = params[:regId]

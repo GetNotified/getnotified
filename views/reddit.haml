@@ -8,7 +8,10 @@
         %option{:value=>"25000"}25 000
         %option{:value=>"50000"}50 000
       %br
-      %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
+      - if logged_in?
+        %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
+      - else
+        %button.btn.btn-default#reddit-front-page-alert{:type=>"button", :href=>"#"}Submit
       .alert.alert-dismissable.fade#formAlert{:style=>"margin-top:10px"}
         %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
 

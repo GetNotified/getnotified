@@ -4,11 +4,11 @@ class Application < Sinatra::Base
     haml :index
   end
 
-  get '/services/:service' do |serv|
+  get '/services/:service/?' do |serv|
     haml :reddit
   end
 
-  get '/admin' do
+  get '/admin/?' do
     authenticate
     "Admin Only!"
   end

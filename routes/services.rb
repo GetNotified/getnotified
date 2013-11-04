@@ -1,12 +1,14 @@
 class Application < Sinatra::Base
   include Mongo
 
-  post '/services/reddit/submit' do
+  post '/services/reddit/submit/?' do
+    authenticate
+
     content_type :json
     score = params[:score]
     raise InvalidParameters, "Missing score parameter" unless score
 
-    user = 'Chris'
+    uid = session[:uid]
     type = 'reddit-front-page'
     request = 'http://www.reddit.com/.json'
 
@@ -22,9 +24,9 @@ class Application < Sinatra::Base
        },
        {upsert: true})
 
-    notifications_coll.update({user: user, type: type},
+    notifications_coll.update({uid: uid, type: type},
       {
-          user: user,
+          uid: uid,
           service: 'reddit',
           type: type,
           score: score,
