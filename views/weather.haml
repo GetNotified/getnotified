@@ -1,5 +1,5 @@
 .container.marketing
-  %form#weather-min-temp{:method=>"POST", :action=>"weather/submit"}
+  %form#weather-min-temp
     %fieldset
       %legend Create Minimum Temperature Notification
       %label Notify me when the temperature in [city] will be under [temperature] in the next 24 hours:
@@ -11,16 +11,15 @@
         Find city ID
       %br
       Temperature:
-      %input{:name => "temp", :id => "temp", :type => "text", :style=>"margin-top:7px"}
+      %input{:name => "temperature", :id => "temperature", :type => "text", :style=>"margin-top:7px"}
       %br
       %br
       - if logged_in?
-        %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
-        .submit-result
+        %button.btn.btn-default#weather-min-submit-btn Submit
       - else
-        %button.btn.btn-default#reddit-front-page-alert{:type=>"button", :href=>"#"}Submit
-      .alert.alert-dismissable.fade#formAlert{:style=>"margin-top:10px"}
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+        %button.btn.btn-default#show-log-in-alert{:type=>"button", :href=>"#"} Submit
+    %br
+    .submit-result
 
 
 / Modal

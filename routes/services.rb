@@ -44,7 +44,7 @@ class Application < Sinatra::Base
     temperature = params[:temperature]
     city = params[:city]
 
-    unless type and city and temperature
+    if type.empty? or city.empty? or temperature.empty?
       return {success: 'false',
               error: 'Missing parameters'}.to_json
     end
