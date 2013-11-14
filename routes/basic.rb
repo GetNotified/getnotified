@@ -4,8 +4,12 @@ class Application < Sinatra::Base
     haml :index
   end
 
-  get '/services/:service/?' do |serv|
+  get '/services/reddit/?' do
     haml :reddit
+  end
+
+  get '/services/weather/?' do
+    haml :weather
   end
 
   get '/admin/?' do

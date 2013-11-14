@@ -35,10 +35,9 @@ class Application < Sinatra::Base
 
     end
 
-    def send_register_confirm(regId)
-      message = "You have successfully registered your device with NotifyMe!"
+    def send_android_push(regId, body)
       post('https://notifyme-push.azure-mobile.net/api/android',
-           query: { regId: regId, message: message },
+           query: { regId: regId, body: body },
            headers: { "X-ZUMO-APPLICATION" => CONFIG['AZURE_API_SECRET'] }
       )
     end

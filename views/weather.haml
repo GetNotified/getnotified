@@ -1,0 +1,38 @@
+.container.marketing
+  %form#weather-min-temp{:method=>"POST", :action=>"weather/submit"}
+    %fieldset
+      %legend Create Minimum Temperature Notification
+      %label Notify me when the temperature in [city] will be under [temperature] in the next 24 hours:
+      %br
+      City:
+      %input{:name => "city", :id => "city", :type => "text", :style=>"margin-left:54px; margin-right:10px"}
+      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-bottom:3px"}
+        %span.glyphicon.glyphicon-search
+        Find city ID
+      %br
+      Temperature:
+      %input{:name => "temp", :id => "temp", :type => "text", :style=>"margin-top:7px"}
+      %br
+      %br
+      - if logged_in?
+        %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
+      - else
+        %button.btn.btn-default#reddit-front-page-alert{:type=>"button", :href=>"#"}Submit
+      .alert.alert-dismissable.fade#formAlert{:style=>"margin-top:10px"}
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+
+
+/ Modal
+#FindCityModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title City ID Finder
+      .modal-body
+        City:
+        %input{:name => "city", :id => "modal-city", :type => "text"}
+        %button.btn.btn-primary.btn-sm#modal-search-city{:type=>"button", :href=>"#"} Search
+        .modal-city-search-result
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

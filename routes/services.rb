@@ -2,8 +2,6 @@ class Application < Sinatra::Base
   include Mongo
 
   post '/services/reddit/submit/?' do
-    authenticate
-
     content_type :json
     score = params[:score]
     raise InvalidParameters, "Missing score parameter" unless score

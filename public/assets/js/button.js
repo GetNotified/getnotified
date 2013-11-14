@@ -27,3 +27,22 @@ $("#reddit-front-page-alert").click(function () {
     $(form_alert).addClass("alert-danger");
     $(form_alert).addClass("in");
 });
+
+$("#modal-search-city").click(function () {
+    var weatherAPI = "/api/weather/search/city";
+    $(".modal-city-search-result").empty();
+    $.ajax({
+        type: "POST",
+        url: weatherAPI,
+        data:
+        { city: $("#modal-city").val() }
+    })
+    .done(function ( data ) {
+        $.each( data.list, function( i, item ) {
+            $(".modal-city-search-result").append(item.name + " (" + item.sys.country + ") : " + "<strong>" + item.id + "<br />");
+        });
+    })
+    .fail(function (request, status, error) {
+        $(".modal-city-search-result").append("Failure!");
+    });
+});
