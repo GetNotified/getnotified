@@ -4,7 +4,11 @@ class Application < Sinatra::Base
   post '/services/reddit/submit/?' do
     content_type :json
     score = params[:score]
-    raise InvalidParameters, "Missing score parameter" unless score
+
+    unless score
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
 
     uid = session[:uid]
     type = 'reddit-front-page'
@@ -34,7 +38,39 @@ class Application < Sinatra::Base
     {success: 'true'}.to_json
   end
 
-end
+  post '/services/weather/submit/?' do
+    content_type :json
+    type = params[:type]
+    temperature = params[:temperature]
+    city = params[:city]
 
-class InvalidParameters < Exception
+    unless type and city and temperature
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    uid = session[:uid]
+    requests_coll = settings.mongo_db.collection("requests")
+    notifications_coll = settings.mongo_db.collection("notifications")
+
+    # Will insert if doesn't already exist
+    requests_coll.update({service: 'weather', type: 'forecast'},
+                         {
+                             "$addToSet" => { :cities => city }
+                         },
+                         {upsert: true})
+
+    notifications_coll.update({uid: uid, service: 'weather', type: type, city: city},
+                          {
+                              uid: uid,
+                              service: 'weather',
+                              type: type,
+                              city: city,
+                              temperature: temperature,
+                          },
+                          {upsert: true})
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
 end

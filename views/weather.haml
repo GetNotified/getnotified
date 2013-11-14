@@ -16,6 +16,7 @@
       %br
       - if logged_in?
         %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
+        .submit-result
       - else
         %button.btn.btn-default#reddit-front-page-alert{:type=>"button", :href=>"#"}Submit
       .alert.alert-dismissable.fade#formAlert{:style=>"margin-top:10px"}
