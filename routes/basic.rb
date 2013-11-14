@@ -12,8 +12,8 @@ class Application < Sinatra::Base
     haml :weather
   end
 
-  get '/admin/?' do
+  get '/dashboard/?' do
     authenticate
-    "Admin Only!"
+    haml :dashboard
   end
 end
