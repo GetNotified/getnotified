@@ -43,11 +43,11 @@ $("#modal-search-city").click(function () {
     });
 });
 
-$("#weather-min-temp").submit(function( event ) {
+$("#weather-temperature").submit(function( event ) {
     event.preventDefault();
-    var form = $("#weather-min-temp");
+    var form = $("#weather-temperature");
     var form_url = 'weather/submit';
-    var form_data = form.serialize() + "&type=minimum";
+    var form_data = form.serialize();
     var result_div = form.children('.submit-result');
     result_div.empty();
     $.ajax({

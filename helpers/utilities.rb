@@ -10,8 +10,7 @@ class Application < Sinatra::Base
       # with /auth/
       pass if request.path_info =~ /^\/auth\//
 
-      # /auth/twitter is captured by omniauth:
-      # when the path info matches /auth/twitter, omniauth will redirect to twitter
+      # /auth/google is captured by omniauth:
       redirect to('/auth/google') unless logged_in?
     end
 
@@ -19,6 +18,7 @@ class Application < Sinatra::Base
       users_coll = settings.mongo_db.collection("users")
       users_coll.update({uid: info['uid']},
                          {
+                           "$set" => {
                             uid:       info['uid'],
                             fullname:  info['info']['name'],
                             email:     info['info']['email'],
@@ -30,6 +30,7 @@ class Application < Sinatra::Base
                                     refresh_token: info['credentials']['refresh_token'],
                                     expires_at:    info['credentials']['expires_at'],
                                 }
+                           }
                          },
                          {upsert: true})
 

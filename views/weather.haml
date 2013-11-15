@@ -1,8 +1,8 @@
 .container.marketing
-  %form#weather-min-temp
+  %form#weather-temperature
     %fieldset
       %legend Create Minimum Temperature Notification
-      %label Notify me when the temperature in [city] will be under [temperature] in the next 24 hours:
+      %label Notify me when the [minimum/maximum] temperature in [city] will be [temperature] in the next 24 hours:
       %br
       City ID:
       %input{:name => "city", :id => "city", :type => "text", :style=>"margin-left:40px; margin-right:10px"}
@@ -10,17 +10,21 @@
         %span.glyphicon.glyphicon-search
         Find city ID
       %br
+      Type:
+      %select{:name => "type", :id => "type", :style=>"margin-left:50px; margin-top:7px"}
+        %option{:value=>"minimum"}Minimum
+        %option{:value=>"maximum"}Maximum
+      %br
       Temperature:
       %input{:name => "temperature", :id => "temperature", :type => "text", :style=>"margin-top:7px"}
       %br
       %br
       - if logged_in?
-        %button.btn.btn-default#weather-min-submit-btn Submit
+        %button.btn.btn-default#weather-temp-submit-btn Submit
       - else
         %button.btn.btn-default#show-log-in-alert{:type=>"button", :href=>"#"} Submit
     %br
     .submit-result
-
 
 / Modal
 #FindCityModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
