@@ -39,7 +39,7 @@ $("#modal-search-city").click(function () {
         });
     })
     .fail(function (request, status, error) {
-        $(".modal-city-search-result").append("Failure!");
+        show_warning_alert(result_div, "Unknown Error");
     });
 });
 
@@ -59,7 +59,7 @@ $("#weather-temperature").submit(function( event ) {
         handle_saving_notification(data, result_div);
     })
     .fail(function (request, status, error) {
-        result_div.append('Unknown error');
+        show_warning_alert(result_div, "Unknown Error");
     });
 });
 

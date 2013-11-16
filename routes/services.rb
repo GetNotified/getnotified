@@ -66,7 +66,7 @@ class Application < Sinatra::Base
                               service: 'weather',
                               type: type,
                               city: city,
-                              temperature: temperature,
+                              temperature: temperature.to_f,
                           },
                           {upsert: true})
     # Executed successfully
