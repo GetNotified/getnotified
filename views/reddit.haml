@@ -2,16 +2,16 @@
   %form#reddit-front-page
     %fieldset
       %legend Create Front Page Notification
-      %label Notify me when a post has over (upvotes):
+      %label Notify me when a post has over X upvotes:
+      %br
+      Upvotes:
       %select{:name => "score", :id => "score"}
         %option{:value=>"15000"}15 000
         %option{:value=>"25000"}25 000
         %option{:value=>"50000"}50 000
       %br
-      - if logged_in?
-        %button.btn.btn-default{:type=>"submit", :id=>"submit"}Submit
-      - else
-        %button.btn.btn-default#reddit-front-page-alert{:type=>"button", :href=>"#"}Submit
+      %br
+      %button.btn.btn-default Submit
     %br
     .submit-result
 

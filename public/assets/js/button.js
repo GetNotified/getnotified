@@ -5,6 +5,7 @@ $("#reddit-front-page").submit(function( event ) {
     var form_data = $(form).serialize();
     var form_url = 'reddit/submit';
     var result_div = form.children('.submit-result');
+    result_div.empty();
     $.ajax({
         type: "POST",
         url: form_url,
@@ -16,12 +17,6 @@ $("#reddit-front-page").submit(function( event ) {
     .fail(function (request, status, error) {
         show_warning_alert(result_div, "Error saving notification: " + data.error);
     });
-});
-
-$("#reddit-front-page-alert").click(function () {
-    var form = $("#reddit-front-page-alert")[0].form;
-    var result_div = $(form).children('.submit-result');
-    show_warning_alert(result_div, 'You have to log in first.');
 });
 
 $("#modal-search-city").click(function () {
@@ -46,7 +41,7 @@ $("#modal-search-city").click(function () {
 $("#weather-temperature").submit(function( event ) {
     event.preventDefault();
     var form = $("#weather-temperature");
-    var form_url = 'weather/submit';
+    var form_url = 'weather/temperature/submit';
     var form_data = form.serialize();
     var result_div = form.children('.submit-result');
     result_div.empty();
@@ -63,10 +58,24 @@ $("#weather-temperature").submit(function( event ) {
     });
 });
 
-$("#show-log-in-alert").click( function () {
-    var form = $("#show-log-in-alert")[0].form;
-    var result_div = $(form).children('.submit-result');
-    show_warning_alert(result_div, 'You have to log in first.');
+$("#weather-forecast").submit(function( event ) {
+    event.preventDefault();
+    var form = $("#weather-forecast");
+    var form_url = 'weather/forecast/submit';
+    var form_data = form.serialize() + "&type=forecast";
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Unknown Error");
+        });
 });
 
 function handle_saving_notification(data, div) {
