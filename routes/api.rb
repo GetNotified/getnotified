@@ -10,6 +10,7 @@ class Application < Sinatra::Base
     regId = params[:regId]
     uid  = params[:uid]
     device_type = params[:device_type]
+    device_name = params[:device_name]
     users_coll = settings.mongo_db.collection("users")
     user = users_coll.find_one({:uid => uid})
 
@@ -32,7 +33,7 @@ class Application < Sinatra::Base
 
     users_coll.update( {uid: uid},
        {
-           "$addToSet" => { :devices => { :regId => regId, :type => device_type } }
+           "$addToSet" => { :devices => { :regId => regId, :type => device_type, :name => device_name } }
        },
        {upsert: true})
 
@@ -41,6 +42,41 @@ class Application < Sinatra::Base
         service: "NotifyMe"
     }
     send_android_push(regId, body)
+
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
+  post '/api/device/delete/?' do
+    content_type :json
+
+    regId = params[:regId]
+    uid  = params[:uid]
+
+    unless regId and uid
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    users_coll = settings.mongo_db.collection("users")
+    user = users_coll.find_one({:uid => uid})
+
+    unless user
+      return {success: 'false',
+              error: 'User not found'}.to_json
+    end
+
+    if user['devices'].nil? or user['devices'].select { |device| device['regId'] == regId }.empty?
+      puts "Device not found"
+      return {success: 'false',
+              error:   'Device not found'}.to_json
+    end
+
+    users_coll.update( {uid: uid},
+                       {
+                           "$pull" => { :devices => { :regId => regId } }
+                       },
+                       {upsert: true})
 
     # Executed successfully
     {success: 'true'}.to_json

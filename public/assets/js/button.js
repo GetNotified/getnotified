@@ -1,3 +1,21 @@
+$(".dashboard-btn").click(function ( event ) {
+    event.preventDefault();
+    var row = this.parentNode.parentNode.parentNode;
+    $.ajax({
+        type: "POST",
+        url: 'api/device/delete',
+        data: {
+            uid: this.attributes.uid.value,
+            regId: this.attributes.regId.value
+        }
+    })
+    .done(function ( data ) {
+        row.remove();
+    })
+    .fail(function (request, status, error) {
+        alert('Error deleting device!');
+    });
+});
 
 $("#reddit-front-page").submit(function( event ) {
     var form = $("#reddit-front-page");

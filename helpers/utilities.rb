@@ -43,6 +43,11 @@ class Application < Sinatra::Base
       )
     end
 
+    def find_user_by_uid(uid)
+      users_coll = settings.mongo_db.collection("users")
+      users_coll.find_one({uid: uid})
+    end
+
     # HTTParty get wrapper. This serves to clean up code, as well as throw webserver errors wherever needed
     #
     def get *args, &block

@@ -1,3 +1,38 @@
 .container.marketing
-  Welcome to your dasboard #{session[:fullname]}
+  %h2
+    Dashboard
+    %small= @user['fullname']
+  %hr
+  %strong Account Type:
+  Google
+  %br
+  %strong Email:
+  = @user['email']
+  %br
+  %br
+  %h4 Devices
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr
+        %th #
+        %th OS
+        %th Model
+        %th Delete
+      %tbody
+        - @device_count = 0
+        - @user['devices'].each do |device|
+          - @device_count += 1
+          %tr
+            %td= @device_count
+            %td= device['type']
+            %td= device['name']
+            %td
+              %font{:color => "Crimson"}
+                %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
+                  %span.glyphicon.glyphicon-remove
+
+  %h4 Notifications
+
+
+
 
