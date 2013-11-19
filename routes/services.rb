@@ -109,7 +109,7 @@ class Application < Sinatra::Base
                          },
                          {upsert: true})
 
-    notifications_coll.update({uid: uid, service: 'weather', type: type, city: city},
+    notifications_coll.update({uid: uid, service: 'weather', type: type, city: city, weather: weather},
                               {
                                   uid: uid,
                                   service: 'weather',
