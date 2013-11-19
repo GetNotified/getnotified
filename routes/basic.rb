@@ -15,6 +15,7 @@ class Application < Sinatra::Base
   get '/dashboard/?' do
     authenticate
     @user = find_user_by_uid session[:uid]
+    @notifications = find_notifications_by_uid session[:uid]
     haml :dashboard
   end
 end

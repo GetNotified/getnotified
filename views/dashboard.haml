@@ -27,12 +27,47 @@
             %td= device['type']
             %td= device['name']
             %td
-              %font{:color => "Crimson"}
-                %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
-                  %span.glyphicon.glyphicon-remove
+              %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
+                %span.glyphicon.glyphicon-remove
 
   %h4 Notifications
-
-
-
-
+  .row
+  - @notification_count = 0
+  - @notifications.each do |notification|
+    - @notification_count += 1
+    .col-md-4
+      %strong
+        Notifcation
+        = @notification_count
+        %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}"}
+          %span.glyphicon.glyphicon-remove
+        %a{:href => "#", :uid => "#{@user['uid']}"}
+          %span.glyphicon.glyphicon-pencil
+      %br
+      Service:
+      = notification['service'].capitalize
+      %br
+      Type:
+      = notification['type'].capitalize
+      %br
+      - if notification['type'] == 'reddit-front-page'
+        Score:
+        = notification['score']
+        %br
+      - elsif notification['type'] == 'forecast'
+        City:
+        = notification['city']
+        %br
+        Weather:
+        = notification['weather']
+        %br
+      - elsif notification['type'] == 'minimum' or notification['type'] == 'maximum'
+        City:
+        = notification['city']
+        %br
+        Temperature:
+        = notification['temperature']
+        %br
+    - if @notification_count % 3 == 0 and @notification_count > 0
+      .row
+      %br

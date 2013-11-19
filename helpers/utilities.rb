@@ -48,6 +48,11 @@ class Application < Sinatra::Base
       users_coll.find_one({uid: uid})
     end
 
+    def find_notifications_by_uid(uid)
+      notifications_coll = settings.mongo_db.collection("notifications")
+      notifications_coll.find({uid: uid}).to_a
+    end
+
     # HTTParty get wrapper. This serves to clean up code, as well as throw webserver errors wherever needed
     #
     def get *args, &block
