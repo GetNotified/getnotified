@@ -1,4 +1,4 @@
-$(".dashboard-btn").click(function ( event ) {
+$(".dashboard-device-del").click(function ( event ) {
     event.preventDefault();
     var row = this.parentNode.parentNode.parentNode;
     $.ajax({
@@ -15,6 +15,24 @@ $(".dashboard-btn").click(function ( event ) {
     .fail(function (request, status, error) {
         alert('Error deleting device!');
     });
+});
+
+$(".dashboard-notif-del").click(function ( event ) {
+    event.preventDefault();
+    var notif = this.parentNode.parentNode;
+    $.ajax({
+        type: "POST",
+        url: 'api/notification/delete',
+        data: {
+            id: this.attributes.id.value
+        }
+    })
+        .done(function ( data ) {
+            notif.remove();
+        })
+        .fail(function (request, status, error) {
+            alert('Error deleting device!');
+        });
 });
 
 $("#reddit-front-page").submit(function( event ) {

@@ -82,6 +82,22 @@ class Application < Sinatra::Base
     {success: 'true'}.to_json
   end
 
+  post '/api/notification/delete/?' do
+    content_type :json
+
+    id = params[:id]
+    unless id
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    notifications_coll = settings.mongo_db.collection("notifications")
+    notifications_coll.remove(:_id => BSON::ObjectId(id))
+
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
   post '/api/weather/search/city?' do
     content_type :json
 

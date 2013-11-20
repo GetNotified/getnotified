@@ -1,6 +1,8 @@
 class Application < Sinatra::Base
   include Mongo
 
+  # THESE SHOULD BE SHORTENED AND ACTUAL ACTION MOVED TO API
+
   post '/services/reddit/submit/?' do
     content_type :json
     score = params[:score]

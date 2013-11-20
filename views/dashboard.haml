@@ -27,7 +27,7 @@
             %td= device['type']
             %td= device['name']
             %td
-              %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
+              %a.dashboard-device-del{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
                 %span.glyphicon.glyphicon-remove
 
   %h4 Notifications
@@ -39,9 +39,9 @@
       %strong
         Notifcation
         = @notification_count
-        %a.dashboard-btn{:href => "#", :uid => "#{@user['uid']}"}
+        %a.dashboard-notif-del{:href => "#", :id => "#{notification['_id']}"}
           %span.glyphicon.glyphicon-remove
-        %a{:href => "#", :uid => "#{@user['uid']}"}
+        %a.dashboard-notif-edit{:href => "#", :uid => "#{@user['uid']}"}
           %span.glyphicon.glyphicon-pencil
       %br
       Service:

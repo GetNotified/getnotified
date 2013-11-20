@@ -1,15 +1,47 @@
-a.dashboard-btn:link{
+a.dashboard-device-del:link{
     color:Crimson;
 }
-a.dashboard-btn:visited{
+a.dashboard-device-del:visited{
     color:Crimson;
 }
-a.dashboard-btn:hover{
+a.dashboard-device-del:hover{
     color:Crimson;
 }
-a.dashboard-btn:focus{
+a.dashboard-device-del:focus{
     color:Crimson;
 }
-a.dashboard-btn:active{
+a.dashboard-device-del:active{
     color:Crimson;
+}
+
+a.dashboard-notif-del:link{
+    color:Crimson;
+}
+a.dashboard-notif-del:visited{
+    color:Crimson;
+}
+a.dashboard-notif-del:hover{
+    color:Crimson;
+}
+a.dashboard-notif-del:focus{
+    color:Crimson;
+}
+a.dashboard-notif-del:active{
+    color:Crimson;
+}
+
+a.dashboard-notif-edit:link{
+    color:DodgerBlue;
+}
+a.dashboard-notif-edit:visited{
+    color:DodgerBlue;
+}
+a.dashboard-notif-edit:hover{
+    color:DodgerBlue;
+}
+a.dashboard-notif-edit:focus{
+    color:DodgerBlue;
+}
+a.dashboard-notif-edit:active{
+    color:DodgerBlue;
 }
