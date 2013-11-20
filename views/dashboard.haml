@@ -35,13 +35,14 @@
   - @notification_count = 0
   - @notifications.each do |notification|
     - @notification_count += 1
+    - @notification_service = notification['service']
     .col-md-4
       %strong
         Notifcation
         = @notification_count
         %a.dashboard-notif-del{:href => "#", :id => "#{notification['_id']}"}
           %span.glyphicon.glyphicon-remove
-        %a.dashboard-notif-edit{:href => "#", :uid => "#{@user['uid']}"}
+        %a.dashboard-notif-edit{:href => "/services/" + notification['service']}
           %span.glyphicon.glyphicon-pencil
       %br
       Service:
@@ -71,3 +72,4 @@
     - if @notification_count % 3 == 0 and @notification_count > 0
       .row
       %br
+
