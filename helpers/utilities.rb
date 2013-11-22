@@ -53,6 +53,32 @@ class Application < Sinatra::Base
       notifications_coll.find({uid: uid}).to_a
     end
 
+    def is_admin?(uid)
+      users_coll = settings.mongo_db.collection("users")
+      user = users_coll.find_one({uid: uid})
+      user['is_admin']
+    end
+
+    def latest_notifications_sent
+      notifications_coll = settings.mongo_db.collection("logs")
+      notifications_coll.find().limit(20)
+    end
+
+    def notifications_count
+      # These values need to be cached
+      settings.mongo_db.collection("notifications").count
+    end
+
+    def notifications_sent_count
+      # These values need to be cached
+      settings.mongo_db.collection("logs").count
+    end
+
+    def users_count
+      # These values need to be cached
+      settings.mongo_db.collection("users").count
+    end
+
     # HTTParty get wrapper. This serves to clean up code, as well as throw webserver errors wherever needed
     #
     def get *args, &block
