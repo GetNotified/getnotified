@@ -11,65 +11,73 @@
   %br
   %br
   %h4 Devices
-  %table.table.table-hover.table-condensed
-    %thead
-      %tr
-        %th #
-        %th OS
-        %th Model
-        %th Delete
-      %tbody
-        - @device_count = 0
-        - @user['devices'].each do |device|
-          - @device_count += 1
-          %tr
-            %td= @device_count
-            %td= device['type']
-            %td= device['name']
-            %td
-              %a.dashboard-device-del{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
-                %span.glyphicon.glyphicon-remove
+  - if @user['devices'].nil?
+    You currently don't have any devices on your account.
+    %br
+    %br
+  - else
+    %table.table.table-hover.table-condensed
+      %thead
+        %tr
+          %th #
+          %th OS
+          %th Model
+          %th Delete
+        %tbody
+          - @device_count = 0
+          - @user['devices'].each do |device|
+            - @device_count += 1
+            %tr
+              %td= @device_count
+              %td= device['type']
+              %td= device['name']
+              %td
+                %a.dashboard-device-del{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
+                  %span.glyphicon.glyphicon-remove
 
   %h4 Notifications
-  .row
-  - @notification_count = 0
-  - @notifications.each do |notification|
-    - @notification_count += 1
-    - @notification_service = notification['service']
-    .col-md-4
-      %strong
-        Notifcation
-        = @notification_count
-        %a.dashboard-notif-del{:href => "#", :id => "#{notification['_id']}"}
-          %span.glyphicon.glyphicon-remove
-        %a.dashboard-notif-edit{:href => "/services/" + notification['service']}
-          %span.glyphicon.glyphicon-pencil
-      %br
-      Service:
-      = notification['service'].capitalize
-      %br
-      Type:
-      = notification['type'].capitalize
-      %br
-      - if notification['type'] == 'reddit-front-page'
-        Score:
-        = notification['score']
+  - if @notifications.empty?
+    You currently don't have any notifications.
+  - else
+    .row
+    - @notification_count = 0
+    - @notifications.each do |notification|
+      - @notification_count += 1
+      - @notification_service = notification['service']
+      .col-md-4
+        %strong
+          Notifcation
+          = @notification_count
+          %a.dashboard-notif-del{:href => "#", :id => "#{notification['_id']}"}
+            %span.glyphicon.glyphicon-remove
+          %a.dashboard-notif-edit{:href => "/services/" + notification['service']}
+            %span.glyphicon.glyphicon-pencil
         %br
-      - elsif notification['type'] == 'forecast'
-        City:
-        = notification['city']
+        Service:
+        = notification['service'].capitalize
         %br
-        Weather:
-        = notification['weather']
+        Type:
+        = notification['type'].capitalize
         %br
-      - elsif notification['type'] == 'minimum' or notification['type'] == 'maximum'
-        City:
-        = notification['city']
+        - if notification['type'] == 'reddit-front-page'
+          Score:
+          = notification['score']
+          %br
+        - elsif notification['type'] == 'forecast'
+          City:
+          = notification['city']
+          %br
+          Weather:
+          = notification['weather']
+          %br
+        - elsif notification['type'] == 'minimum' or notification['type'] == 'maximum'
+          City:
+          = notification['city']
+          %br
+          Temperature:
+          = notification['temperature']
+          %br
+      - if @notification_count % 3 == 0 and @notification_count > 0
+        .row
         %br
-        Temperature:
-        = notification['temperature']
-        %br
-    - if @notification_count % 3 == 0 and @notification_count > 0
-      .row
-      %br
 
