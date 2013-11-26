@@ -4,6 +4,25 @@ class Application < Sinatra::Base
     "NotifyMe API v1"
   end
 
+  post '/api/test/notification' do
+    content_type :json
+
+    regId = params[:regId]
+    unless regId
+      return {success: 'false',
+        error: 'Missing parameters'}.to_json
+    end
+
+    body = {
+        message: "Test notification from your dashboard",
+        service: "NotifyMe"
+    }
+    send_android_push(regId, body)
+
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
   post '/api/device/register/?' do
     content_type :json
 

@@ -22,7 +22,8 @@
           %th #
           %th OS
           %th Model
-          %th Delete
+          %th.text-right Test Notification
+          %th.text-right Delete
         %tbody
           - @device_count = 0
           - @user['devices'].each do |device|
@@ -31,7 +32,9 @@
               %td= @device_count
               %td= device['type']
               %td= device['name']
-              %td
+              %td.text-right
+                %button.btn.btn-success.btn-sm.dashboard-device-test{:href => "#", :regId => "#{device['regId']}"} Send
+              %td.text-right
                 %a.dashboard-device-del{:href => "#", :uid => "#{@user['uid']}", :regId => "#{device['regId']}"}
                   %span.glyphicon.glyphicon-remove
 

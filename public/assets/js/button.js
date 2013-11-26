@@ -17,6 +17,25 @@ $(".dashboard-device-del").click(function ( event ) {
     });
 });
 
+$(".dashboard-device-test").click(function ( event ) {
+    event.preventDefault();
+    var button = this;
+    $.ajax({
+        type: "POST",
+        url: 'api/test/notification',
+        data: {
+            regId: this.attributes.regId.value
+        }
+    })
+        .done(function ( data ) {
+            button.innerText = "Sent!";
+            $(button).attr('disabled','disabled')
+        })
+        .fail(function (request, status, error) {
+            alert('Error sending test notification!');
+        });
+});
+
 $(".dashboard-notif-del").click(function ( event ) {
     event.preventDefault();
     var notif = this.parentNode.parentNode;
