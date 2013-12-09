@@ -12,6 +12,10 @@ class Application < Sinatra::Base
     haml :weather
   end
 
+  get '/services/poly/:test' do |test|
+    hash, iv = encrypt(test)
+  end
+
   get '/dashboard/?' do
     authenticate
     @user = find_user_by_uid session[:uid]

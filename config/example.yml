@@ -7,3 +7,4 @@ AZURE_API_SECRET: your_api_key
 
 # Other
 RACK_COOKIE_SECRET: random_secret
+SHA_256_SECRET: random_secret

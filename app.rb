@@ -3,6 +3,7 @@ require 'sinatra/base'
 require 'json/ext'
 require 'mongo'
 require 'httparty'
+require 'encryptor'
 
 require 'omniauth'
 require 'omniauth-google-oauth2'
