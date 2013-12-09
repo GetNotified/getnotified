@@ -123,4 +123,50 @@ class Application < Sinatra::Base
     # Executed successfully
     {success: 'true'}.to_json
   end
+
+  post '/services/poly/result/submit?' do
+    content_type :json
+
+    uid = session[:uid]
+    if uid.nil?
+      return {success: 'false',
+              error: 'You need to log in first'}.to_json
+    end
+
+    code = params[:code]
+    password = params[:password]
+    ddn = params[:ddn]
+    if code.empty? or password.empty? or ddn.empty?
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    hash, iv = encrypt(password)
+
+    requests_coll = settings.mongo_db.collection("requests")
+    notifications_coll = settings.mongo_db.collection("notifications")
+
+    # Will insert if doesn't already exist
+    requests_coll.update({service: 'poly', type: 'result'},
+                         {
+                             "$addToSet" => { :credentials => {
+                                 :code => code,
+                                 :password => hash,
+                                 :iv => iv,
+                                 :ddn => ddn
+                             } }
+                         },
+                         {upsert: true})
+
+    notifications_coll.update({uid: uid, service: 'poly', type: 'result', code: code},
+                              {
+                                  uid: uid,
+                                  service: 'poly',
+                                  type: 'result',
+                                  code: code,
+                              },
+                              {upsert: true})
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
 end

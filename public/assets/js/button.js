@@ -133,6 +133,26 @@ $("#weather-forecast").submit(function( event ) {
         });
 });
 
+$("#poly-result").submit(function( event ) {
+    event.preventDefault();
+    var form = $("#poly-result");
+    var form_url = 'poly/result/submit';
+    var form_data = form.serialize();
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Unknown Error");
+        });
+});
+
 function handle_saving_notification(data, div) {
     if(data.success == 'false') {
         show_warning_alert(div, "Error saving notification: " + data.error);

@@ -12,8 +12,8 @@ class Application < Sinatra::Base
     haml :weather
   end
 
-  get '/services/poly/:test' do |test|
-    hash, iv = encrypt(test)
+  get '/services/poly/?' do
+    haml :poly
   end
 
   get '/dashboard/?' do
