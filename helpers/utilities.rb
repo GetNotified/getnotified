@@ -61,7 +61,7 @@ class Application < Sinatra::Base
 
     def latest_notifications_sent
       notifications_coll = settings.mongo_db.collection("logs")
-      notifications_coll.find().limit(20)
+      notifications_coll.find().sort({_id:-1}).limit(20)
     end
 
     def notifications_count
