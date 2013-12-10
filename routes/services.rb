@@ -153,7 +153,8 @@ class Application < Sinatra::Base
                                  :code => code,
                                  :password => hash,
                                  :iv => iv,
-                                 :ddn => ddn
+                                 :ddn => ddn,
+                                 :uid => uid,
                              } }
                          },
                          {upsert: true})
