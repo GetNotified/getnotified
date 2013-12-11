@@ -14,10 +14,9 @@
       <script src="/assets/js/respond.min.js"></script>
 
     %body
-      %div= haml :navbar
-      %div= yield
-      .container.marketing
-        %div= haml :footer
+      = haml :navbar
+
+      = yield
 
     / Custom styles for this template
     %link{:href => "/css/carousel.css", :rel => "stylesheet"}
