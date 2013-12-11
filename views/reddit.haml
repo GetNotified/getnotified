@@ -1,17 +1,15 @@
 .container.marketing
-  %form#reddit-front-page
-    %fieldset
-      %legend Create Front Page Notification
-      %label Notify me when a post has over X upvotes:
-      %br
-      Upvotes:
-      %select{:name => "score", :id => "score"}
-        %option{:value=>"15000"}15 000
-        %option{:value=>"25000"}25 000
-        %option{:value=>"50000"}50 000
-      %br
-      %br
-      %button.btn.btn-default Submit
-    %br
+  %form.form-horizontal#reddit-front-page{:role => "form"}
+    %legend Create Front Page Notification
+    %label Notify me when a post has over X upvotes:
+    .form-group
+      %label.col-sm-1.control-label{:for => "score"} Upvotes
+      .col-xs-2
+        %select.form-control.input-sm{:id => "score", :name => "score"}
+          %option{:value=>"15000"}15 000
+          %option{:value=>"25000"}25 000
+          %option{:value=>"50000"}50 000
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
     .submit-result
-
