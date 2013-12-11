@@ -1,48 +1,49 @@
 .container.marketing
-  %form#weather-temperature
-    %fieldset
-      %legend Create Temperature Notification
-      %label Notify me when the [minimum/maximum] temperature in [city] will be [temperature] in the next 24 hours:
-      %br
-      City ID:
-      %input{:name => "city", :id => "city", :type => "text", :style=>"margin-left:40px; margin-right:10px"}
-      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-bottom:3px"}
+  %form.form-horizontal#weather-temperature{:role => "form"}
+    %legend Create Temperature Notification
+    %label Notify me when the [minimum/maximum] temperature in [city] will be [temperature] in the next 24 hours:
+    .form-group
+      %label.col-xs-1.control-label{:for => "city"} City ID
+      .col-xs-2
+        %input.form-control.input-sm{:id => "city", :name => "city", :type => "text"}
+      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-top :3px"}
         %span.glyphicon.glyphicon-search
         Find city ID
-      %br
-      Type:
-      %select{:name => "type", :id => "type", :style=>"margin-left:50px; margin-top:7px"}
-        %option{:value=>"minimum"}Minimum
-        %option{:value=>"maximum"}Maximum
-      %br
-      Temperature:
-      %input{:name => "temperature", :id => "temperature", :type => "text", :style=>"margin-top:7px"}
-      %br
-      %br
-      %button.btn.btn-default#weather-temp-submit-btn Submit
-    %br
+    .form-group
+      %label.col-sm-1.control-label{:for => "type"} Type
+      .col-xs-2
+        %select.form-control.input-sm{:id => "type", :name => "type"}
+          %option{:value=>"minimum"}Minimum
+          %option{:value=>"maximum"}Maximum
+    .form-group
+      %label.col-sm-1.control-label{:for => "temperature"} Temperature
+      .col-xs-2
+        %input.form-control.input-sm{:id => "temperature", :name => "temperature",:type => "text"}
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
     .submit-result
 
   %br
-  %form#weather-forecast
-    %fieldset
-      %legend Create Weather Notification
-      %label Notify me when the weather in [city] will be [rainy/sunny] in the next 24 hours:
-      %br
-      City ID:
-      %input{:name => "city", :id => "city", :type => "text", :style=>"margin-left:40px; margin-right:10px"}
-      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-bottom:3px"}
+  %form.form-horizontal#weather-forecast{:role => "form"}
+    %legend Create Weather Notification
+    %label Notify me when the weather in [city] will be [rainy/sunny] in the next 24 hours:
+    .form-group
+      %label.col-xs-1.control-label{:for => "city"} City ID
+      .col-xs-2
+        %input.form-control.input-sm{:id => "city", :name => "city", :type => "text"}
+      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-top :3px"}
         %span.glyphicon.glyphicon-search
         Find city ID
-      %br
-      Weather:
-      %select{:name => "weather", :id => "weather", :style=>"margin-left:30px; margin-top:7px"}
-        %option{:value=>"rainy"}Rainy
-        %option{:value=>"sunny"}Sunny
-      %br
-      %br
-      %button.btn.btn-default#weather-temp-submit-btn Submit
-    %br
+    .form-group
+      %label.col-sm-1.control-label{:for => "weather"} Weather
+      .col-xs-2
+        %select.form-control.input-sm{:id => "weather", :name => "weather"}
+          %option{:value=>"rainy"}Rainy
+          %option{:value=>"sunny"}Sunny
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
     .submit-result
 
 / Modal
@@ -53,9 +54,11 @@
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
         %h4#myModalLabel.modal-title City ID Finder
       .modal-body
-        City:
-        %input{:name => "city", :id => "modal-city", :type => "text"}
-        %button.btn.btn-primary.btn-sm#modal-search-city{:type=>"button", :href=>"#"} Search
+        .form-group
+          %label.col-sm-1.control-label{:for => "modal-city", :style=>"margin-top :4px"} City:
+          .col-xs-4
+            %input.form-control.input-sm{:id => "modal-city", :name => "city", :type => "text"}
+          %button.btn.btn-primary.btn-sm#modal-search-city{:type=>"button", :href=>"#"} Search
         .modal-city-search-result
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
