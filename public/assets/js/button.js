@@ -58,7 +58,7 @@ $("#reddit-front-page").submit(function( event ) {
     var form = $("#reddit-front-page");
     event.preventDefault();
     var form_data = $(form).serialize();
-    var form_url = 'reddit/submit';
+    var form_url = 'reddit/frontpage/submit';
     var result_div = form.children('.submit-result');
     result_div.empty();
     $.ajax({
@@ -72,6 +72,26 @@ $("#reddit-front-page").submit(function( event ) {
     .fail(function (request, status, error) {
         show_warning_alert(result_div, "Error saving notification: " + data.error);
     });
+});
+
+$("#reddit-user-comment").submit(function( event ) {
+    var form = $("#reddit-user-comment");
+    event.preventDefault();
+    var form_data = $(form).serialize();
+    var form_url = 'reddit/comment/submit';
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Error saving notification: " + data.error);
+        });
 });
 
 $("#modal-search-city").click(function () {

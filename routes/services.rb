@@ -3,7 +3,7 @@ class Application < Sinatra::Base
 
   # THESE SHOULD BE SHORTENED AND ACTUAL ACTION MOVED TO API
 
-  post '/services/reddit/submit/?' do
+  post '/services/reddit/frontpage/submit/?' do
     content_type :json
     score = params[:score]
 
@@ -40,6 +40,51 @@ class Application < Sinatra::Base
           score: score,
       },
       {upsert: true})
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
+  post '/services/reddit/comment/submit/?' do
+    content_type :json
+    score = params[:score]
+    user  = params[:user]
+
+    uid = session[:uid]
+    unless uid
+      return {success: 'false',
+              error: 'You need to log in first'}.to_json
+    end
+
+    if score.empty? or user.empty?
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    score = score.to_i
+    type = 'user-comment'
+
+    requests_coll = settings.mongo_db.collection("requests")
+    notifications_coll = settings.mongo_db.collection("notifications")
+
+    # Will insert if doesn't already exist
+    requests_coll.update({type: type, serivce: 'reddit', username: user},
+                         {
+                             service: 'reddit',
+                             type: type,
+                             username: user,
+                             last_id: 'none'
+                         },
+                         {upsert: true})
+
+    notifications_coll.update({uid: uid, type: type, username: user},
+                              {
+                                  uid: uid,
+                                  service: 'reddit',
+                                  type: type,
+                                  username: user,
+                                  score: score,
+                              },
+                              {upsert: true})
     # Executed successfully
     {success: 'true'}.to_json
   end

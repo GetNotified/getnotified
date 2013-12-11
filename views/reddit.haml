@@ -13,3 +13,20 @@
       .col-sm-offset-1.col-sm-4
         %button.btn.btn-default{:type => "submit"} Submit
     .submit-result
+    %br
+
+  %form.form-horizontal#reddit-user-comment{:role => "form"}
+    %legend Create User Comment Notification
+    %label Notify me if one of my comments receives more than X upvotes:
+    .form-group
+      %label.col-sm-1.control-label{:for => "user"} Username
+      .col-xs-2
+        %input.form-control.input-sm{:id => "user", :name => "user",:type => "text"}
+    .form-group
+      %label.col-sm-1.control-label{:for => "score"} Upvotes
+      .col-xs-2
+        %input.form-control.input-sm{:id => "score", :name => "score",:type => "text"}
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
+    .submit-result
