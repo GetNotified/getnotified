@@ -83,14 +83,14 @@ class Application < Sinatra::Base
                          {upsert: true})
 
     notifications_coll.update({uid: uid, type: type, username: user},
-                              {
-                                  uid: uid,
-                                  service: 'reddit',
-                                  type: type,
-                                  username: user,
-                                  score: score,
-                              },
-                              {upsert: true})
+                          {
+                              uid: uid,
+                              service: 'reddit',
+                              type: type,
+                              username: user,
+                              score: score,
+                          },
+                          {upsert: true})
     # Executed successfully
     {success: 'true'}.to_json
   end
