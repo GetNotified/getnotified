@@ -1,0 +1,22 @@
+.container.marketing
+  %form.form-horizontal#github-repo-watch{:role => "form"}
+    %legend Create Repository Watch Notification
+    %label Notify me if someone [action] my repository:
+    .form-group
+      %label.col-sm-1.control-label{:for => "user"} Username
+      .col-xs-2
+        %input.form-control.input-sm{:placeholder => "Eg. Chris911", :id => "user", :name => "user",:type => "text"}
+    .form-group
+      %label.col-sm-1.control-label{:for => "repo"} Repository
+      .col-xs-2
+        %input.form-control.input-sm{:placeholder => "Eg. NotifyMe-Website", :id => "repo", :name => "repo",:type => "text"}
+    .form-group
+      %label.col-sm-1.control-label{:for => "action"} Action
+      .col-xs-2
+        %select.form-control.input-sm{:id => "action", :name => "action"}
+          %option{:value=>"star"}Stars
+          %option{:value=>"fork"}Forks
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
+    .submit-result

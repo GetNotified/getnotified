@@ -18,6 +18,8 @@
               %a{:href => "/services/weather"} Weather
             %li{:class => if request.path_info == "/services/poly" then 'active' end}
               %a{:href => "/services/poly"} Poly
+            %li{:class => if request.path_info == "/services/github" then 'active' end}
+              %a{:href => "/services/github"} GitHub
           %ul.nav.navbar-nav.navbar-right
             - if logged_in?
               %li{:class => if request.path_info == "/dashboard" then 'active' end}

@@ -16,6 +16,10 @@ class Application < Sinatra::Base
     haml :poly
   end
 
+  get '/services/github/?' do
+    haml :github
+  end
+
   get '/dashboard/?' do
     authenticate
     @user = find_user_by_uid session[:uid]

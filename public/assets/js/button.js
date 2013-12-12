@@ -114,6 +114,26 @@ $("#reddit-user-submission").submit(function( event ) {
         });
 });
 
+$("#github-repo-watch").submit(function( event ) {
+    var form = $("#github-repo-watch");
+    event.preventDefault();
+    var form_data = $(form).serialize();
+    var form_url = 'github/repo-watch/submit';
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Error saving notification: " + data.error);
+        });
+});
+
 $("#modal-search-city").click(function () {
     var weatherAPI = "/api/weather/search/city";
     $(".modal-city-search-result").empty();
