@@ -62,7 +62,7 @@
         Type:
         = notification['type'].capitalize
         %br
-        - if notification['type'] == 'reddit-front-page'
+        - if notification['service'] == 'reddit'
           Score:
           = notification['score']
           %br
@@ -79,6 +79,16 @@
           %br
           Temperature:
           = notification['temperature']
+          %br
+        - elsif notification['type'] == 'github-repo-watch'
+          User:
+          = notification['user']
+          %br
+          Repo:
+          = notification['repo']
+          %br
+          Action:
+          = notification['action']
           %br
       - if @notification_count % 3 == 0 and @notification_count > 0
         .row
