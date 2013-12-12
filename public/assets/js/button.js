@@ -94,6 +94,26 @@ $("#reddit-user-comment").submit(function( event ) {
         });
 });
 
+$("#reddit-user-submission").submit(function( event ) {
+    var form = $("#reddit-user-submission");
+    event.preventDefault();
+    var form_data = $(form).serialize();
+    var form_url = 'reddit/submission/submit';
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Error saving notification: " + data.error);
+        });
+});
+
 $("#modal-search-city").click(function () {
     var weatherAPI = "/api/weather/search/city";
     $(".modal-city-search-result").empty();
