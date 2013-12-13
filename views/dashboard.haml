@@ -3,11 +3,17 @@
     Dashboard
     %small= @user['fullname']
   %hr
-  %strong Account Type:
-  Google
+  #row
+    .col-md-10{:style => "padding: 0px"}
+      %strong Account Type:
+      Google
+    .col-md-2
+      %button.btn.btn-danger.btn-xs.dashboard-del-account{:href => "#", :uid => "#{@user['uid']}", :email => "#{@user['email']}"} Delete Account
   %br
-  %strong Email:
-  = @user['email']
+  #row
+    .col-md-10{:style => "padding: 0px"}
+      %strong Email:
+      = @user['email']
   %br
   %br
   %h4 Devices

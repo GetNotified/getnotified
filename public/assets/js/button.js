@@ -17,6 +17,29 @@ $(".dashboard-device-del").click(function ( event ) {
     });
 });
 
+$(".dashboard-del-account").click(function ( event ) {
+    event.preventDefault();
+    var row = this.parentNode.parentNode.parentNode;
+    var res= confirm("Are you sure you want to delete your account?");
+    if (res == true)
+    {
+        $.ajax({
+            type: "POST",
+            url: 'api/account/delete',
+            data: {
+                uid:   this.attributes.uid.value,
+                email: this.attributes.email.value
+            }
+        })
+        .done(function ( data ) {
+            window.location.replace("/");
+        })
+        .fail(function (request, status, error) {
+            alert('Error deleting account!');
+        });
+    }
+});
+
 $(".dashboard-device-test").click(function ( event ) {
     event.preventDefault();
     var button = this;

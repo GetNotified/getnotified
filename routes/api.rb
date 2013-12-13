@@ -117,6 +117,30 @@ class Application < Sinatra::Base
     {success: 'true'}.to_json
   end
 
+  post '/api/account/delete/?' do
+    content_type :json
+
+    email = params[:email]
+    uid  = params[:uid]
+
+    unless email and uid
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    users_coll = settings.mongo_db.collection("users")
+    users_coll.remove({:uid => uid, :email => email})
+
+    notifications_coll = settings.mongo_db.collection("notifications")
+    notifications_coll.remove(:uid => uid)
+
+    session[:uid] = nil
+    session[:fullname] = nil
+
+    # Executed successfully
+    {success: 'true'}.to_json
+  end
+
   post '/api/weather/search/city?' do
     content_type :json
 
