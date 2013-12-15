@@ -117,6 +117,23 @@ class Application < Sinatra::Base
     {success: 'true'}.to_json
   end
 
+  post '/api/notification/list/?' do
+    content_type :json
+
+    uid = params[:uid]
+    unless uid
+      return {success: 'false',
+              error: 'Missing parameters'}.to_json
+    end
+
+    notifications_coll = settings.mongo_db.collection("notifications")
+    notifications = notifications_coll.find(:uid => uid).to_a
+
+    # Executed successfully
+    {success: 'true',
+     notifications: notifications}.to_json
+  end
+
   post '/api/account/delete/?' do
     content_type :json
 
