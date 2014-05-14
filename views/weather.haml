@@ -3,21 +3,21 @@
     %legend Create Temperature Notification
     %label Notify me when the [minimum/maximum] temperature in [city] will be [temperature] in the next 24 hours:
     .form-group
-      %label.col-xs-1.control-label{:for => "city"} City ID
-      .col-xs-2
+      %label.col-sm-1.control-label{:for => "city"} City ID
+      .col-sm-2
         %input.form-control.input-sm{:id => "city", :name => "city", :type => "text"}
-      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-top :3px"}
+      %button.btn.btn-default.btn-sm{"data-target" => "#FindCityModal", "data-toggle" => "modal"}
         %span.glyphicon.glyphicon-search
         Find city ID
     .form-group
       %label.col-sm-1.control-label{:for => "type"} Type
-      .col-xs-2
+      .col-sm-2
         %select.form-control.input-sm{:id => "type", :name => "type"}
           %option{:value=>"minimum"}Minimum
           %option{:value=>"maximum"}Maximum
     .form-group
       %label.col-sm-1.control-label{:for => "temperature"} Temperature
-      .col-xs-2
+      .col-sm-2
         %input.form-control.input-sm{:id => "temperature", :name => "temperature",:type => "text"}
     .form-group
       .col-sm-offset-1.col-sm-4
@@ -29,15 +29,15 @@
     %legend Create Weather Notification
     %label Notify me when the weather in [city] will be [rainy/sunny] in the next 24 hours:
     .form-group
-      %label.col-xs-1.control-label{:for => "city"} City ID
-      .col-xs-2
+      %label.col-sm-1.control-label{:for => "city"} City ID
+      .col-sm-2
         %input.form-control.input-sm{:id => "city", :name => "city", :type => "text"}
-      %button.btn.btn-default.btn-xs{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-top :3px"}
+      %button.btn.btn-default.btn-sm{"data-target" => "#FindCityModal", "data-toggle" => "modal", :style=>"margin-top :3px"}
         %span.glyphicon.glyphicon-search
         Find city ID
     .form-group
       %label.col-sm-1.control-label{:for => "weather"} Weather
-      .col-xs-2
+      .col-sm-2
         %select.form-control.input-sm{:id => "weather", :name => "weather"}
           %option{:value=>"rainy"}Rainy
           %option{:value=>"sunny"}Sunny
@@ -56,7 +56,7 @@
       .modal-body
         .form-group
           %label.col-sm-1.control-label{:for => "modal-city", :style=>"margin-top :4px"} City:
-          .col-xs-4
+          .col-sm-4
             %input.form-control.input-sm{:id => "modal-city", :name => "city", :type => "text"}
           %button.btn.btn-primary.btn-sm#modal-search-city{:type=>"button", :href=>"#"} Search
         .modal-city-search-result
