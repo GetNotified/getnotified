@@ -137,6 +137,26 @@ $("#reddit-user-submission").submit(function( event ) {
         });
 });
 
+$("#reddit-subreddit-alert").submit(function( event ) {
+    var form = $("#reddit-subreddit-alert");
+    event.preventDefault();
+    var form_data = $(form).serialize();
+    var form_url = 'reddit/subalert/submit';
+    var result_div = form.children('.submit-result');
+    result_div.empty();
+    $.ajax({
+        type: "POST",
+        url: form_url,
+        data: form_data
+    })
+        .done(function ( data ) {
+            handle_saving_notification(data, result_div);
+        })
+        .fail(function (request, status, error) {
+            show_warning_alert(result_div, "Error saving notification: " + data.error);
+        });
+});
+
 $("#github-repo-watch").submit(function( event ) {
     var form = $("#github-repo-watch");
     event.preventDefault();

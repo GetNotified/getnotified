@@ -32,13 +32,30 @@
     .submit-result
     %br
 
-  %form.form-horizontal#reddit-user-comment{:role => "form"}
-    %legend Create User Comment Notification
-    %label Notify me if one of my comments receives more than X upvotes:
+  %form.form-horizontal#reddit-user-submission{:role => "form"}
+    %legend Create User Submission Notification
+    %label Notify me if one of my submissions receives more than X upvotes:
     .form-group
       %label.col-sm-1.control-label{:for => "user"} Username
       .col-sm-2
         %input.form-control.input-sm{:id => "user", :name => "user",:type => "text"}
+    .form-group
+      %label.col-sm-1.control-label{:for => "score"} Upvotes
+      .col-sm-2
+        %input.form-control.input-sm{:id => "score", :name => "score",:type => "text"}
+    .form-group
+      .col-sm-offset-1.col-sm-4
+        %button.btn.btn-default{:type => "submit"} Submit
+    .submit-result
+    %br
+
+  %form.form-horizontal#reddit-subreddit-alert{:role => "form"}
+    %legend Create a Subreddit Alert Notification
+    %label Notify me if a submission in subreddit X receives more than Y upvotes:
+    .form-group
+      %label.col-sm-1.control-label{:for => "subreddit"} Subreddit
+      .col-sm-2
+        %input.form-control.input-sm{:id => "subreddit", :name => "subreddit",:type => "text"}
     .form-group
       %label.col-sm-1.control-label{:for => "score"} Upvotes
       .col-sm-2
