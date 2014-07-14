@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :notifications
+
   resources :services
 
   devise_for :users
