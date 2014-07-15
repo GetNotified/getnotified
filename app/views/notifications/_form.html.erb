@@ -4,8 +4,11 @@
   <div class="form-inputs">
     <%= f.association :user %>
     <%= f.association :service %>
-    <%= f.input :type %>
-    <%= f.input :conditions %>
+    <%= f.input :notif_type %>
+    <%= f.simple_fields_for :conditions do |condition| %>
+        <%= condition.input :pages, :input_html => { :value => '' } %>
+        <%= condition.input :author  %>
+    <% end %>
   </div>
 
   <div class="form-actions">
