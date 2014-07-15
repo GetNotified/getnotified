@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @condition.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @condition.description %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @condition.type %>
+</p>
+
+<p>
+  <strong>Html control:</strong>
+  <%= @condition.html_control %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @condition.required %>
+</p>
+
+<p>
+  <strong>Values:</strong>
+  <%= @condition.values %>
+</p>
+
+<%= link_to 'Edit', edit_condition_path(@condition) %> |
+<%= link_to 'Back', conditions_path %>

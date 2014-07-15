@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714051552) do
+ActiveRecord::Schema.define(version: 20140715065727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "conditions", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.string   "html_control"
+    t.boolean  "required"
+    t.string   "values"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -29,6 +40,21 @@ ActiveRecord::Schema.define(version: 20140714051552) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "notification_types", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "service_id"
+    t.string   "account_required"
+    t.integer  "condition_id"
+    t.boolean  "featured"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notification_types", ["condition_id"], name: "index_notification_types_on_condition_id", using: :btree
+  add_index "notification_types", ["service_id"], name: "index_notification_types_on_service_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
@@ -48,7 +74,14 @@ ActiveRecord::Schema.define(version: 20140714051552) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_url"
+    t.integer  "notification_type_id"
+    t.string   "accout_required"
+    t.boolean  "featured"
+    t.boolean  "public"
   end
+
+  add_index "services", ["notification_type_id"], name: "index_services_on_notification_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

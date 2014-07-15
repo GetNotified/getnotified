@@ -1,0 +1,17 @@
+<%= simple_form_for(@notification_type) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :service %>
+    <%= f.input :account_required %>
+    <%= f.association :condition %>
+    <%= f.input :featured %>
+    <%= f.input :public %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

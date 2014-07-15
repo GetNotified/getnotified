@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @notification_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @notification_type.description %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @notification_type.service %>
+</p>
+
+<p>
+  <strong>Account required:</strong>
+  <%= @notification_type.account_required %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @notification_type.condition %>
+</p>
+
+<p>
+  <strong>Featured:</strong>
+  <%= @notification_type.featured %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @notification_type.public %>
+</p>
+
+<%= link_to 'Edit', edit_notification_type_path(@notification_type) %> |
+<%= link_to 'Back', notification_types_path %>

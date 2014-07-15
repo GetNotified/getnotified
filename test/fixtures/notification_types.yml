@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  service_id: 
+  account_required: MyString
+  condition_id: 
+  featured: false
+  public: false
+
+two:
+  name: MyString
+  description: MyText
+  service_id: 
+  account_required: MyString
+  condition_id: 
+  featured: false
+  public: false
