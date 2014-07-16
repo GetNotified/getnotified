@@ -2,6 +2,12 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :url %>
+  <%= f.input :logo_url %>
+  <%= f.input :featured %>
+  <%= f.input :public %>
+  <%= f.input :account_required, as: :radio_buttons,
+              collection: ["Yes", "Optional", "No"] %>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
