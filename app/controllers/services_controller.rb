@@ -1,6 +1,6 @@
 class ServicesController < InheritedResources::Base
 
-  def service_params
-    params.require(:service).permit!
+  def permitted_params
+    params.permit!
   end
 end
