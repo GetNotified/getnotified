@@ -7,6 +7,15 @@
   margin-bottom: 30px;
 }
 
+.service-header .service-logo {
+  position: absolute;
+  right: 1px;
+  margin-right: -50px;
+  margin-top: -40px;
+  max-height: 250px;
+  max-width: 250px;
+}
+
 .service-header blockquote {
   border-left: 5px solid #d6d6d6;
   margin: 0 0 8px;

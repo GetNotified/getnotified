@@ -2,6 +2,7 @@
 <% content_for :title, model_class.model_name.human.pluralize.titleize %>
 
 <div class="service-header">
+  <%= image_tag @service.logo_url, class: "service-logo" %>
   <h1><%= @service.name %></h1>
   <blockquote>
     <p><%= @service.description %></p>
