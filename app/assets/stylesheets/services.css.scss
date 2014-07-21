@@ -1,3 +1,17 @@
 // Place all the styles related to the Services controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.service-header {
+  max-width: 75%;
+  margin-bottom: 30px;
+}
+
+.service-header blockquote {
+  border-left: 5px solid #d6d6d6;
+  margin: 0 0 8px;
+}
+
+.service-notifications {
+  margin-bottom: 30px;
+}

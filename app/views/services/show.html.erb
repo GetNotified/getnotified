@@ -1,16 +1,33 @@
 <%- model_class = Service -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<% content_for :title, model_class.model_name.human.pluralize.titleize %>
+
+<div class="service-header">
+  <h1><%= @service.name %></h1>
+  <blockquote>
+    <p><%= @service.description %></p>
+  </blockquote>
+  Website: <%= link_to @service.url, @service.url %>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @service.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @service.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @service.url %></dd>
-</dl>
+<div id="service-notifications" class="service-notifications">
+  <h3>Notification Types</h3>
+  <div class="container">
+    <div class="row">
+        <% @service.notification_types.each do |notif| %>
+          <div class="col-md-4 col-sm-6">
+            <div class="service-wrapper">
+              <span class="mega-octicon octicon-star"></span>
+              <h3><%= notif.name %></h3>
+              <p><%= notif.description %>m</p>
+              <a href="#" class="btn">Get Notified</a>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
+</div>
+
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
