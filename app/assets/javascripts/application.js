@@ -19,12 +19,15 @@
 
 var mainMenu = (function() {
 
-    var $listItems = $( '#mainmenu > ul > li' ),
-        $menuItems = $listItems.children( 'a' ),
+    var $listItems = [],
+        $menuItems = [],
         $body = $( 'body' ),
         current = -1;
 
     function init() {
+        $listItems = $( '#mainmenu > ul > li' );
+        $menuItems = $listItems.children( 'a' );
+
         $menuItems.on( 'click', open );
         $listItems.on( 'click', function( event ) { event.stopPropagation(); } );
     }
