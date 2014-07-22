@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716043906) do
+ActiveRecord::Schema.define(version: 20140722054203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,13 +20,16 @@ ActiveRecord::Schema.define(version: 20140716043906) do
   create_table "conditions", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "type"
+    t.string   "input_type"
     t.string   "html_control"
     t.boolean  "required"
     t.string   "values"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "notification_type_id"
   end
+
+  add_index "conditions", ["notification_type_id"], name: "index_conditions_on_notification_type_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
