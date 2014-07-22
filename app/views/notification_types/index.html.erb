@@ -19,9 +19,8 @@
       <tr>
         <td><%= notification_type.name %></td>
         <td><%= notification_type.description %></td>
-        <td><%= notification_type.service %></td>
+        <td><%= notification_type.service.name %></td>
         <td><%= notification_type.account_required %></td>
-        <td><%= notification_type.condition %></td>
         <td><%= notification_type.featured %></td>
         <td><%= notification_type.public %></td>
         <td><%= link_to 'Show', notification_type %></td>

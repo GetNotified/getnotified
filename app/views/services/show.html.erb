@@ -20,7 +20,7 @@
               <span class="mega-octicon octicon-star"></span>
               <h3><%= notif.name %></h3>
               <p><%= notif.description %>m</p>
-              <a href="#" class="btn">Get Notified</a>
+              <%= link_to "Get Notified", new_notification_path(notification_type: notif.id), class: "btn" %>
             </div>
           </div>
         <% end %>
@@ -28,7 +28,6 @@
   </div>
 
 </div>
-
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

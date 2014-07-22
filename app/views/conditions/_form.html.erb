@@ -3,8 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.association :notification_type %>
     <%= f.input :description %>
-    <%= f.input :type %>
+    <%= f.input :input_type %>
     <%= f.input :html_control %>
     <%= f.input :required %>
     <%= f.input :values %>
